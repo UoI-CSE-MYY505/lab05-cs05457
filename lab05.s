@@ -71,7 +71,9 @@ taken:
     # nop instructions added between examples
     add  zero, zero, zero  
     add  zero, zero, zero  
-    add  zero, zero, zero  
+    add  zero, zero, zero
+    addi t0,zero,5
+    add t1,t0,zero  
 
 # ----------------------------------------------------------------------------------------
 # TODO: Add an example with a double hazard and check that it works corretly.
@@ -82,7 +84,10 @@ taken:
     # nop instructions added between examples
     add  zero, zero, zero  
     add  zero, zero, zero  
-    add  zero, zero, zero  
+    add  zero, zero, zero 
+    addi t0,zero,1
+    addi t0,zero,2
+    add t1,zero,t0 
 
 # ----------------------------------------------------------------------------------------
 # TODO: Add an example with a load stalling for 1 cycle to pass a value to a NOT-TAKEN branch 
@@ -91,13 +96,21 @@ taken:
     # nop instructions added between examples
     add  zero, zero, zero  
     add  zero, zero, zero  
-    add  zero, zero, zero  
+    add  zero, zero, zero
+    lw t0,0(a0) 
+    beq t0,zero,exit
+    addi t0,t0,-1 
 
 # ----------------------------------------------------------------------------------------
 # TODO: Add an example with taken branch to a label which is immediately following the branch
 # ----------------------------------------------------------------------------------------
 
-
+    add  zero, zero, zero  
+    add  zero, zero, zero  
+    add  zero, zero, zero
+    beq t0,zero,test
+test:
+    addi t0,t0,1
 
 exit:  
     addi      a7, zero, 10    
